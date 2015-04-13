@@ -17,9 +17,36 @@
 
 echo "Installing Node modules"
 
-npm install gulp gulp-load-plugins gulp-uglify gulp-css-globbing node-sass gulp-sass gulp-minify-css gulp-sourcemaps browser-sync
+npm install gulp gulp-load-plugins gulp-uglify gulp-css-globbing node-sass gulp-sass gulp-autoprefixer gulp-minify-css gulp-sourcemaps browser-sync
 
 echo "Node modules installed"
+
+
+# Build file structure
+
+echo "Building file structure"
+
+mkdir dev 
+mkdir build
+mkdir build/js
+mkdir build/maps
+mv js/ dev/
+mv sass/ dev/
+mv css build/
+
+echo "File structure built"
+
+
+# Updating Theme Files
+
+echo "Updating theme files"
+
+PWD=$(pwd)
+DIR=$(basename $(pwd))
+
+find $PWD -name "$DIR.info" -type f -exec sed -i 's/ css\// build\/css\//g; s/ js\// build\/js\//g' {} ";"
+
+echo "Theme files updated"
 
 
 # Resolving issues with Drupal looking at node_module info files
@@ -30,36 +57,5 @@ find -L ./node_modules -type f -name "*.info" -print0 | while IFS= read -r -d ''
     mv -- "$FNAME" "${FNAME%.info}.inf0"
 done
 
-echo "Issues resolved."
-
-
-# Build file structure
-
-echo "Building file structure"
-
-rm -Rf css
-rm -Rf js
-rm -Rf sass
-
-echo "File structure built"
-
-
-# Updating Theme Files
-
-echo "Updating theme files"
-
-DIR=$(basename $(pwd))
-
-mv EXAMPLE.info $DIR.info
-find $PWD -name "$DIR.info" -type f -exec sed -i "s/EXAMPLE/$DIR/g" {} ";"
-
-mv dev/js/EXAMPLE.behaviors.js dev/js/$DIR.behaviors.js
-find $PWD/dev/js -name "$DIR.behaviors.js" -type f -exec sed -i "s/EXAMPLE/$DIR/g" {} ";"
-
-find $PWD -name "gulpfile.js" -type f -exec sed -i "s/EXAMPLE/$DIR/g" {} ";"
-
-mv dev/sass/EXAMPLE.hacks.scss dev/sass/$DIR.hacks.scss
-mv dev/sass/EXAMPLE.normalize.scss dev/sass/$DIR.normalize.scss
-mv dev/sass/EXAMPLE.styles.scss dev/sass/$DIR.styles.scss
-
-echo "Theme files updated. Please clear your drupal caches ie: drush cc all"
+echo "Issues resolved. Please clear your drupal caches ie: drush cc all"
+echo "Run the command 'gulp' within this directory to run gulp tasks"

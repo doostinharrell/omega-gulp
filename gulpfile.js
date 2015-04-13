@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     nodesass = require('node-sass'),
     sass = require('gulp-sass'),
     globbing = require('gulp-css-globbing'),
+    autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     sourcemaps = require('gulp-sourcemaps'),
     browsersync = require('browser-sync'),
@@ -21,32 +22,35 @@ gulp.task('js', function() {
 
 // Sass Task
 gulp.task('sass', function() {
-  gulp.src('dev/sass/EXAMPLE.styles.scss')
+  gulp.src('dev/sass/mitchcontracting-theme.styles.scss')
     .pipe(sourcemaps.init())
     .pipe(globbing({
       extensions: ['.scss']
     }))
     .pipe(sass())
+    .pipe(autoprefixer())
     .pipe(minifycss())
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
   
-  gulp.src('dev/sass/EXAMPLE.normalize.scss')
+  gulp.src('dev/sass/mitchcontracting-theme.normalize.scss')
     .pipe(sourcemaps.init())
     .pipe(globbing({
       extensions: ['.scss']
     }))
     .pipe(sass())
+    .pipe(autoprefixer())
     .pipe(minifycss())
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
 
-  gulp.src('dev/sass/EXAMPLE.hacks.scss')
+  gulp.src('dev/sass/mitchcontracting-theme.hacks.scss')
     .pipe(sourcemaps.init())
     .pipe(globbing({
       extensions: ['.scss']
     }))
     .pipe(sass())
+    .pipe(autoprefixer())
     .pipe(minifycss())
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
@@ -57,7 +61,7 @@ gulp.task('sass', function() {
 // Browser Sync
 gulp.task('browser-sync', function() {
     browsersync({
-      proxy: "www.EXAMPLE.twm"
+      proxy: "www.mitchcontracting.twm"
     });
 });
 
@@ -65,9 +69,9 @@ gulp.task('browser-sync', function() {
 gulp.task('default', function() {
   gulp.run('js')
   gulp.run('sass')
+  gulp.run('browser-sync')
   gulp.watch('dev/**/*', function() {
     gulp.run('js')
     gulp.run('sass')
-    gulp.run('browser-sync')
   })
 });
