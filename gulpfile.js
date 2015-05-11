@@ -22,7 +22,7 @@ gulp.task('js', function() {
 
 // Sass Task
 gulp.task('sass', function() {
-  gulp.src('dev/sass/mitchcontracting-theme.styles.scss')
+  gulp.src('dev/sass/EXAMPLE.styles.scss')
     .pipe(sourcemaps.init())
     .pipe(globbing({
       extensions: ['.scss']
@@ -33,7 +33,7 @@ gulp.task('sass', function() {
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
   
-  gulp.src('dev/sass/mitchcontracting-theme.normalize.scss')
+  gulp.src('dev/sass/EXAMPLE.normalize.scss')
     .pipe(sourcemaps.init())
     .pipe(globbing({
       extensions: ['.scss']
@@ -44,7 +44,7 @@ gulp.task('sass', function() {
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
 
-  gulp.src('dev/sass/mitchcontracting-theme.hacks.scss')
+  gulp.src('dev/sass/EXAMPLE.hacks.scss')
     .pipe(sourcemaps.init())
     .pipe(globbing({
       extensions: ['.scss']
@@ -61,7 +61,7 @@ gulp.task('sass', function() {
 // Browser Sync
 gulp.task('browser-sync', function() {
     browsersync({
-      proxy: "www.mitchcontracting.twm"
+      proxy: "www.EXAMPLE.twm"
     });
 });
 

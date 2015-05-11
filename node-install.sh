@@ -26,7 +26,7 @@ echo "Node modules installed"
 
 echo "Building file structure"
 
-mkdir dev 
+#mkdir dev 
 mkdir build
 mkdir build/js
 mkdir build/maps
