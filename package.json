@@ -10,7 +10,7 @@
     "gulp-sass": "*",
     "gulp-minify-css": "*",
     "gulp-sourcemaps": "*",
-    "browser-sync": "*"
+    "browser-sync": "2.5.1"
   },
   "engines": {
     "node": ">=0.8.0"
