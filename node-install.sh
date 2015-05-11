@@ -17,7 +17,7 @@
 
 echo "Installing Node modules"
 
-npm install gulp gulp-load-plugins gulp-uglify gulp-css-globbing node-sass gulp-sass gulp-autoprefixer gulp-minify-css gulp-sourcemaps browser-sync concat
+npm install gulp gulp-load-plugins gulp-uglify gulp-css-globbing node-sass gulp-sass gulp-autoprefixer gulp-minify-css gulp-sourcemaps browser-sync gulp-concat
 
 echo "Node modules installed"
 
