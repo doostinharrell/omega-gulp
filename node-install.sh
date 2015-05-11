@@ -37,6 +37,7 @@ mkdir build/js
 mkdir build/maps
 mv css build/
 mv js dev/js
+mv boxsizing.htc images/
 rm -Rf sass
 rm -f $DIR.info
 
