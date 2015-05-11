@@ -26,14 +26,18 @@ echo "Node modules installed"
 
 echo "Building file structure"
 
-#mkdir dev 
+PWD=$(pwd)
+DIR=$(basename $(pwd))
+
+sudo echo $DIR
+
 mkdir build
 mkdir build/js
 mkdir build/maps
-mv js dev/js
-#mv sass/ dev/
 mv css build/
+mv js dev/js
 rm -Rf sass
+rm -f $DIR.info
 
 echo "File structure built"
 
@@ -42,15 +46,12 @@ echo "File structure built"
 
 echo "Updating theme files"
 
-PWD=$(pwd)
-DIR=$(basename $(pwd))
-
-#find $PWD -name "$DIR.info" -type f -exec sed -i 's/ css\// build\/css\//g; s/ js\// build\/js\//g' {} ";"
-find $PWD -name "$DIR.info" -type f -exec sed -i "s/ EXAMPLE/ $DIR/g" {} ";"
-find $PWD -name "gulpfile.js" -type f -exec sed -i "s/ EXAMPLE/ $DIR/g" {} ";"
+find $PWD -name "EXAMPLE.info" -type f -exec sed -i "s/EXAMPLE/$DIR/g" {} ";"
+find $PWD -name "gulpfile.js" -type f -exec sed -i "s/EXAMPLE/$DIR/g" {} ";"
 mv dev/sass/EXAMPLE.hacks.scss dev/sass/$DIR.hacks.scss
 mv dev/sass/EXAMPLE.normalize.scss dev/sass/$DIR.normalize.scss
 mv dev/sass/EXAMPLE.styles.scss dev/sass/$DIR.styles.scss
+mv EXAMPLE.info $DIR.info
 
 echo "Theme files updated"
 

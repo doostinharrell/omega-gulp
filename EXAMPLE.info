@@ -15,7 +15,7 @@ stylesheets[all][] = build/css/EXAMPLE.styles.css
 ; ========================================
 ; Scripts
 ; ========================================
-scripts[] = build/js/EXAMPLE.behaviors.js
+scripts[] = build/js/functions.js
 
 ; ========================================
 ; Regions
