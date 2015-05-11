@@ -2,6 +2,7 @@
 var gulp = require('gulp'),
     browsersync = require('browser-sync'),
     uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
     nodesass = require('node-sass'),
     sass = require('gulp-sass'),
     globbing = require('gulp-css-globbing'),
@@ -23,9 +24,7 @@ gulp.task('js', function() {
 gulp.task('sass', function() {
   gulp.src('dev/sass/EXAMPLE.styles.scss')
     .pipe(sourcemaps.init())
-    .pipe(globbing({
-      extensions: ['.scss']
-    }))
+    .pipe(globbing({ extensions: ['.scss'] }))
     .pipe(sass())
     .pipe(autoprefixer())
     .pipe(minifycss())
@@ -34,9 +33,7 @@ gulp.task('sass', function() {
   
   gulp.src('dev/sass/EXAMPLE.normalize.scss')
     .pipe(sourcemaps.init())
-    .pipe(globbing({
-      extensions: ['.scss']
-    }))
+    .pipe(globbing({ extensions: ['.scss'] }))
     .pipe(sass())
     .pipe(autoprefixer())
     .pipe(minifycss())
@@ -45,9 +42,7 @@ gulp.task('sass', function() {
 
   gulp.src('dev/sass/EXAMPLE.hacks.scss')
     .pipe(sourcemaps.init())
-    .pipe(globbing({
-      extensions: ['.scss']
-    }))
+    .pipe(globbing({ extensions: ['.scss'] }))
     .pipe(sass())
     .pipe(autoprefixer())
     .pipe(minifycss())
