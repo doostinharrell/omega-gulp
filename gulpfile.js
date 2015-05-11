@@ -14,9 +14,8 @@ var gulp = require('gulp'),
 // JS Task
 gulp.task('js', function() {
   gulp.src('dev/js/*.js')
-    .pipe(sourcemaps.init())
     .pipe(uglify())
-    .pipe(sourcemaps.write('../maps/js'))
+    .pipe(concat({ path: 'functions.js', stat: {mode: 0666} }))
     .pipe(gulp.dest('build/js'))
 });
 
