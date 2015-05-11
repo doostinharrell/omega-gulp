@@ -1,0 +1,14 @@
+@include breakpoint($normal) {
+  
+  // Zen Variable Overrides
+  $zen-column-count: 6;
+  $zen-grid-width: $normal;
+    
+  .container {
+    @include zen-grid-container;
+    @include zen-grid-item(6,1);
+    @include zen-float(none);
+    margin: auto;
+    padding: 1em 0;
+  }
+}
