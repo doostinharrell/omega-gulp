@@ -30,7 +30,7 @@ echo "Building file structure"
 mkdir build
 mkdir build/js
 mkdir build/maps
-mv js/ dev/
+mv js/$1.behaviors.js dev/js
 #mv sass/ dev/
 mv css build/
 rm -Rf sass
