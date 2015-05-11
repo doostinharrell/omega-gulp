@@ -44,7 +44,9 @@ echo "Updating theme files"
 PWD=$(pwd)
 DIR=$(basename $(pwd))
 
-find $PWD -name "$DIR.info" -type f -exec sed -i 's/ css\// build\/css\//g; s/ js\// build\/js\//g' {} ";"
+#find $PWD -name "$DIR.info" -type f -exec sed -i 's/ css\// build\/css\//g; s/ js\// build\/js\//g' {} ";"
+find $PWD -name "$DIR.info" -type f -exec sed -i "s/ EXAMPLE/ $DIR/g" {} ";"
+find $PWD -name "gulpfile.js" -type f -exec sed -i "s/ EXAMPLE/ $DIR/g" {} ";"
 
 echo "Theme files updated"
 
