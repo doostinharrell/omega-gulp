@@ -39,6 +39,7 @@ mv css build/
 mv js dev/js
 mv boxsizing.htc images/
 rm -Rf sass
+rm -f build/css/$DIR.no-query.css
 rm -f $DIR.info
 
 echo "File structure built"
