@@ -31,8 +31,9 @@ mkdir build
 mkdir build/js
 mkdir build/maps
 mv js/ dev/
-mv sass/ dev/
+#mv sass/ dev/
 mv css build/
+rm -Rf sass
 
 echo "File structure built"
 
@@ -47,6 +48,9 @@ DIR=$(basename $(pwd))
 #find $PWD -name "$DIR.info" -type f -exec sed -i 's/ css\// build\/css\//g; s/ js\// build\/js\//g' {} ";"
 find $PWD -name "$DIR.info" -type f -exec sed -i "s/ EXAMPLE/ $DIR/g" {} ";"
 find $PWD -name "gulpfile.js" -type f -exec sed -i "s/ EXAMPLE/ $DIR/g" {} ";"
+mv dev/sass/EXAMPLE.hacks.scss dev/sass/$DIR.hacks.scss
+mv dev/sass/EXAMPLE.normalize.scss dev/sass/$DIR.normalize.scss
+mv dev/sass/EXAMPLE.styles.scss dev/sass/$DIR.styles.scss
 
 echo "Theme files updated"
 
