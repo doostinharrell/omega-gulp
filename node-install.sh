@@ -64,5 +64,14 @@ find -L ./node_modules -type f -name "*.info" -print0 | while IFS= read -r -d ''
     mv -- "$FNAME" "${FNAME%.info}.inf0"
 done
 
-echo "Issues resolved. Please clear your drupal caches ie: drush cc all"
+echo "Issues resolved"
+
+# Clear Drupal Cache
+
+echo "Clearing Drupal cache"
+
+drush cc all
+
+echo "Drupal cached cleared"
+
 echo "Run the command 'gulp' within this directory to run gulp tasks"
