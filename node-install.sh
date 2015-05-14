@@ -77,4 +77,4 @@ drush cc all
 
 echo "Drupal cached cleared"
 
-echo "Gulp.js configured"
+echo "Gulp.js configuration complete"
