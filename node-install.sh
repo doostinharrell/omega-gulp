@@ -77,4 +77,4 @@ drush cc all
 
 echo "Drupal cached cleared"
 
-echo "Run the command 'gulp' within this directory to run gulp tasks"
+echo "Gulp.js configured"
