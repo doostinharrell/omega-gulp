@@ -1,0 +1,25 @@
+{
+  "name": "omega_4_gulp",
+  "version": "4.7.11",
+  "authors": [
+    "twmadmin <websites@thewiredmouse.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libraries",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr-min": "~2.8.3"
+  },
+  "devDependencies": {
+    "select2": "~4.0.0",
+    "slick.js": "~1.5.5",
+    "responsive-nav": "~1.0.39",
+    "scroll-reveal": "~2.3.0"
+  }
+}

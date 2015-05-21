@@ -16,11 +16,14 @@
 # Install Node Modules
 
 echo "Installing Node modules"
-
-#npm install gulp gulp-load-plugins gulp-uglify gulp-css-globbing node-sass gulp-sass gulp-autoprefixer gulp-minify-css gulp-sourcemaps browser-sync gulp-concat
 npm install
-
 echo "Node modules installed"
+
+# Install Bower Libraries
+
+echo "Installing Bower libraries"
+bower install -g --allow-root
+echo "Bower libraries installed"
 
 
 # Build file structure
@@ -36,7 +39,7 @@ mkdir build
 mkdir build/js
 mkdir build/maps
 mv css build/
-mv js dev/js
+mv js dev
 mv boxsizing.htc images/
 rm -Rf sass
 rm -f build/css/$DIR.no-query.css

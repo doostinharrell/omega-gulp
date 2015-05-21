@@ -1,6 +1,7 @@
 // Require Node Modules
 var gulp = require('gulp'),
     browsersync = require('browser-sync'),
+    filter = require('gulp-filter'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     nodesass = require('node-sass'),
@@ -9,9 +10,35 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     sourcemaps = require('gulp-sourcemaps'),
+    bowerfiles = require('main-bower-files'),
     browsersync = require('browser-sync'),
     reload = browsersync.reload;
- 
+
+// Bower Task
+gulp.task('bower-build', function() {
+
+  // Get main js files -- Ignore bower jQuery in favore of Drupal
+  gulp.src(bowerfiles({
+    includeDev:'true',
+    overrides: {
+      jquery: {
+        ignore: true
+      },
+      "modernizr-min": {
+        main: "*.js"
+      }
+    }
+  }),{base:'libraries'})
+
+    .pipe(filter('**/*.js'))
+    .pipe(gulp.dest('dev/js/bower'))
+
+  // get main css files
+  gulp.src(bowerfiles({includeDev:'true'}),{base:'libraries'})
+    .pipe(filter('**/*.css'))
+    .pipe(gulp.dest('dev/sass/bower'))
+});
+
 // JS Task
 gulp.task('js', function() {
   gulp.src('dev/js/*.js')
@@ -30,7 +57,7 @@ gulp.task('sass', function() {
     .pipe(minifycss())
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
-  
+
   gulp.src('dev/sass/EXAMPLE.normalize.scss')
     .pipe(sourcemaps.init())
     .pipe(globbing({ extensions: ['.scss'] }))
@@ -48,7 +75,7 @@ gulp.task('sass', function() {
     .pipe(minifycss())
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
-  
+
   .pipe(reload({stream: true}));
 });
 
