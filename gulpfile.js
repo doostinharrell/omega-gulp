@@ -1,32 +1,31 @@
 // Require Node Modules
-var gulp = require('gulp'),
-    browsersync = require('browser-sync'),
-    filter = require('gulp-filter'),
-    uglify = require('gulp-uglify'),
-    concat = require('gulp-concat'),
-    ext = require('gulp-ext-replace'),
-    nodesass = require('node-sass'),
-    sass = require('gulp-sass'),
-    globbing = require('gulp-css-globbing'),
-    autoprefixer = require('gulp-autoprefixer'),
-    minifycss = require('gulp-minify-css'),
-    sourcemaps = require('gulp-sourcemaps'),
-    bowerfiles = require('main-bower-files'),
-    browsersync = require('browser-sync'),
-    reload = browsersync.reload;
+var gulp          = require('gulp'),
+    browsersync   = require('browser-sync'),
+    filter        = require('gulp-filter'),
+    uglify        = require('gulp-uglify'),
+    concat        = require('gulp-concat'),
+    ext           = require('gulp-ext-replace'),
+    nodesass      = require('node-sass'),
+    sass          = require('gulp-sass'),
+    globbing      = require('gulp-css-globbing'),
+    autoprefixer  = require('gulp-autoprefixer'),
+    minifycss     = require('gulp-minify-css'),
+    sourcemaps    = require('gulp-sourcemaps'),
+    bowerfiles    = require('main-bower-files'),
+    browsersync   = require('browser-sync'),
+    reload        = browsersync.reload;
 
 // Bower Task
 gulp.task('bower-build', function() {
-
-  // Get main js files -- Ignore bower jQuery in favore of Drupal
-  gulp.src(bowerfiles({
+  
+  gulp.src(bowerfiles({ // Get main js files
     includeDev:'true',
     overrides: {
       jquery: {
-        ignore: true // Ignore Jquery
+        ignore: true // Ignore bower jQuery in favore of Drupal
       },
       "modernizr-min": {
-        main: "*.js" // Manual main file definition
+        main: "*.js" // Manual main file definition for modernizr
       }
     }
   }),{base:'libraries'})
@@ -34,12 +33,11 @@ gulp.task('bower-build', function() {
     .pipe(filter('**/*.js'))
     .pipe(gulp.dest('dev/js/bower'))
 
-  // get main css files
-  gulp.src(bowerfiles({includeDev:'true'}),{base:'libraries'})
+  gulp.src(bowerfiles({includeDev:'true'}),{base:'libraries'})// get main css files
     .pipe(filter('**/*.css'))
     .pipe(ext('.scss'))
     .pipe(gulp.dest('dev/sass/bower'))
-});
+})
 
 // JS Task
 gulp.task('js', function() {
@@ -47,7 +45,7 @@ gulp.task('js', function() {
     .pipe(uglify())
     .pipe(concat({ path: 'functions.js', stat: {mode: 0666} }))
     .pipe(gulp.dest('build/js'))
-});
+})
 
 // Sass Task
 gulp.task('sass', function() {
@@ -78,23 +76,21 @@ gulp.task('sass', function() {
     .pipe(sourcemaps.write('../maps/css'))
     .pipe(gulp.dest('build/css'))
 
-  .pipe(reload({stream: true}));
-});
+    // Reload browser
+    .pipe(reload({stream: true}))
+})
 
 // Browser Sync
 gulp.task('browser-sync', function() {
-    browsersync({
-      proxy: "www.EXAMPLE.twm"
-    });
-});
-
-// Run all tasks and watch for changes
-gulp.task('default', function() {
-  gulp.run('js')
-  gulp.run('sass')
-  gulp.run('browser-sync')
-  gulp.watch('dev/**/*', function() {
-    gulp.run('js')
-    gulp.run('sass')
+  browsersync({
+    proxy: "www.EXAMPLE.twm"
   })
-});
+})
+
+// Watch for changes
+gulp.task('watch', function(){
+  gulp.watch('dev/**/*', ['js', 'sass'])
+})
+
+// Run run browser-sync and watch for changes
+gulp.task('default', ['browser-sync', 'watch'])
