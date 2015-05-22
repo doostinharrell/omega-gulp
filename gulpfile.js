@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     filter = require('gulp-filter'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
+    ext = require('gulp-ext-replace'),
     nodesass = require('node-sass'),
     sass = require('gulp-sass'),
     globbing = require('gulp-css-globbing'),
@@ -22,10 +23,10 @@ gulp.task('bower-build', function() {
     includeDev:'true',
     overrides: {
       jquery: {
-        ignore: true
+        ignore: true // Ignore Jquery
       },
       "modernizr-min": {
-        main: "*.js"
+        main: "*.js" // Manual main file definition
       }
     }
   }),{base:'libraries'})
@@ -36,6 +37,7 @@ gulp.task('bower-build', function() {
   // get main css files
   gulp.src(bowerfiles({includeDev:'true'}),{base:'libraries'})
     .pipe(filter('**/*.css'))
+    .pipe(ext('.scss'))
     .pipe(gulp.dest('dev/sass/bower'))
 });
 
