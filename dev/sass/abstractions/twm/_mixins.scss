@@ -2,3 +2,32 @@
   font-size: ($sizeValue * 16) + px;
   font-size: $sizeValue + rem;
 }
+
+@mixin v-align(){
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+  }
+  & > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+@mixin v-align-outside(){
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+  }
+}
+
+@mixin v-align-inside(){
+  display: inline-block;
+  vertical-align: middle;
+}

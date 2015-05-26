@@ -83,7 +83,14 @@ gulp.task('sass', function() {
 // Browser Sync
 gulp.task('browser-sync', function() {
   browsersync({
-    proxy: "www.EXAMPLE.twm"
+    proxy: "www.EXAMPLE.twm",
+    port: 3000,
+    ui: {
+      port: 3001,
+      weinre: {
+        port: 3002
+      }
+    }
   })
 })
 
